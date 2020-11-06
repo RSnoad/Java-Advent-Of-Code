@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.lang.Integer;
 import java.util.Collections;
 import java.util.List;
@@ -13,22 +11,28 @@ public class Day02_2017 {
         System.out.println(checksum(row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11, row12, row13, row14, row15, row16));
         System.out.println(divisionsum(row1, row2, row3, row4, row5, row6, row7, row8, row9,row10, row11, row12, row13, row14, row15, row16));
     }
+
+    // Function that takes a row and returns the difference between its largest and smallest values.
     public static int difference(String row) {
+        // Splits string into array using regex for whitespace.
         String splitrow[] = row.split("\\s+");
 
-
+        // Create to list to of digits (think this converts from string to array to list, doesn't seem reasonable)
         List introw = new ArrayList();
         for (String s : splitrow) introw.add(Integer.parseInt(s));
 
-
+        // Find maximum and minimum by sorting the list and taking first and final element.
         Collections.sort(introw);
 
         int minimum = (int) introw.get(0);
         int maximum = (int) introw.get(introw.size() -1);
 
+        // Perform final subtraction.
         return maximum - minimum;
         }
 
+    // Function that uses the difference function to calculate the checksum of any number of input rows, i.e. the sum
+    // of the difference between the man and min of each row.
     public static int checksum(String... rows) {
         int total = 0;
         for (int i = 0; i < rows.length; i++ ) {
@@ -38,11 +42,14 @@ public class Day02_2017 {
         return total;
     }
 
+    // Function that takes an input row, finds the only present evenly divisible pair value, and returns that division
+    // (or 0 if nothing is found).
     public static int evendivion(String row) {
         String splitrow[] = row.split("\\s+");
 
         for (int listiterator = 0; listiterator < splitrow.length; listiterator++) {
             for (int digititerator = 0; digititerator < splitrow.length; digititerator++) {
+                // Ensure that a number is not checked against itself.
                 if (digititerator == listiterator)
                     continue;
                 if (Integer.parseInt(splitrow[listiterator])  %  Integer.parseInt(splitrow[digititerator]) == 0) {
@@ -53,7 +60,8 @@ public class Day02_2017 {
     return 0;
     }
 
-
+    //  Takes any number of input rows and returns the sum of the even divisions. (Very similar to checksum function above,
+    // only taking different function, could be merged?)
     public static int divisionsum(String... rows) {
         int total = 0;
         for (int i = 0; i < rows.length; i++ ) {
