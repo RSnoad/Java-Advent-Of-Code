@@ -8,7 +8,7 @@ public class Day01_2017 {
     // Ought to merge these two functions, as was done with the python version.
     public static int captcha(String sequence) {
         int total = 0;
-        String separated[] = sequence.split("");
+        String[] separated = sequence.split("");
         int length = Array.getLength(separated);
         int step = 1;
 
@@ -25,7 +25,7 @@ public class Day01_2017 {
     // beginning.
     public static int captchaHalfStep(String sequence) {
         int total = 0;
-        String separated[] = sequence.split("");
+        String[] separated = sequence.split("");
         int length = Array.getLength(separated);
         int step = (Array.getLength(separated))/2;
 
